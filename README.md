@@ -26,8 +26,8 @@ python -m semantic_kinematics
 ### Docker
 
 ```bash
-docker build -t semantic-kinematics-mcp .
-docker run -i --rm semantic-kinematics-mcp
+docker build -t mcp/semantic-kinematics .
+docker run -i --rm mcp/semantic-kinematics
 ```
 
 Or with docker-compose for host networking and data mounts:
