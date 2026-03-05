@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "semantic-kinematics"
 version = "0.2.0"
-description = "Embedding space analysis toolkit — MCP server and Gradio UI for semantic drift, trajectory dynamics, and prompt geometry"
+description = "Embedding space analysis toolkit — MCP server and Gradio UI for semantic drift and trajectory dynamics"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
@@ -27,8 +27,7 @@ dependencies = [
     "numpy>=1.24.0,<2.0.0",
     "openai>=1.0.0",
     "python-dotenv>=1.0.0",
-    "pydantic>=2.0.0",
-    "transformers>=4.42.0,<4.43.0",
+    "spacy>=3.0.0",
     "mcp>=1.0.0",
     "gradio>=6.5.1",
     "plotly",
@@ -38,6 +37,7 @@ dependencies = [
 gpu = [
     "sentence-transformers>=2.2.0",
     "torch>=2.0.0",
+    "transformers>=4.42.0,<4.43.0",
     "einops",
     "datasets",
     "accelerate",
