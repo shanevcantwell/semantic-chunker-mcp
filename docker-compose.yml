@@ -1,0 +1,29 @@
+services:
+  semantic-chunker-mcp:
+    build:
+      context: .
+      args:
+        VERSION: 0.1.0
+    image: semantic-chunker-mcp:0.1.0
+    stdin_open: true
+    tty: true
+    volumes:
+      # Mount data directory for access to timeline files
+      - ./data:/app/data:ro
+    environment:
+      # Embedding backend: "lmstudio" (API, default), "nv_embed" (local GPU)
+      - EMBEDDING_BACKEND=${EMBEDDING_BACKEND:-lmstudio}
+      - EMBEDDING_SERVER_URL=${EMBEDDING_SERVER_URL:-http://host.docker.internal:1234/v1}
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-text-embedding-nomic-embed-text-v1.5}
+
+      # OpenAI API (alternative to lmstudio)
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_API_BASE=${OPENAI_API_BASE:-}
+
+      # Logging
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONUNBUFFERED=1
+
+    # Enable host.docker.internal on Linux
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

@@ -1,0 +1,71 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "semantic-chunker"
+version = "0.2.0"
+description = "Embedding space analysis toolkit — MCP server and Gradio UI for semantic drift, trajectory dynamics, and prompt geometry"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Shane Cantwell"}
+]
+keywords = ["embeddings", "mcp", "semantic-analysis", "trajectory", "nlp"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+dependencies = [
+    "numpy>=1.24.0,<2.0.0",
+    "openai>=1.0.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0.0",
+    "transformers>=4.42.0,<4.43.0",
+    "mcp>=1.0.0",
+    "gradio>=6.5.1",
+    "plotly",
+]
+
+[project.optional-dependencies]
+gpu = [
+    "sentence-transformers>=2.2.0",
+    "torch>=2.0.0",
+    "einops",
+    "datasets",
+    "accelerate",
+]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.11.0",
+    "black>=23.7.0",
+    "ruff>=0.0.280",
+]
+
+[project.scripts]
+semantic-chunker-ui = "semantic_chunker.ui.app:main"
+semantic-chunker-mcp = "semantic_chunker.mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["semantic_chunker*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["-v", "--tb=short"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.black]
+line-length = 100
+target-version = ['py310']

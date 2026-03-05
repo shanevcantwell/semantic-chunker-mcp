@@ -1,0 +1,45 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.py[cod]
+*.egg-info
+venv/
+.venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+tests/
+
+# Local config
+.env
+.env.*
+*.local.yaml
+*.code-workspace
+run.sh
+
+# Data (mounted as volume instead)
+data/
+
+# Docs (except README.md needed for build)
+docs/
+CHANGELOG.md
+
+# Claude
+.claude/
+
+# Scripts (not needed in container)
+scripts/
+
+# Migration staging
+migrating_in/
