@@ -4,17 +4,23 @@ Embedding space analysis toolkit. Measures semantic drift between texts, traces 
 ## Quick Start
 
 ```bash
-# Install
+# MCP server only (lean install)
 pip install -e .
 
-# GPU support (NV-Embed-v2, ~14GB VRAM)
+# With Gradio UI
+pip install -e ".[ui]"
+
+# With GPU support (NV-Embed-v2, ~14GB VRAM)
 pip install -e ".[gpu]"
 
-# Launch Gradio UI
-python -m semantic_kinematics
+# UI + GPU
+pip install -e ".[ui,gpu]"
 
-# Or start MCP server
+# Start MCP server
 semantic-kinematics-mcp
+
+# Or launch Gradio UI (requires [ui])
+python -m semantic_kinematics
 ```
 
 ### Docker
@@ -39,6 +45,8 @@ Three interchangeable backends, selected via `EMBEDDING_BACKEND` environment var
 | `nv_embed` | NV-Embed-v2 | 4096 | GPU, fp16, highest quality |
 | `lmstudio` | Any GGUF via OpenAI API | Varies | Local LM Studio server |
 | `sentence_transformers` | Any HuggingFace model | Varies | General purpose |
+
+**NV-Embed-v2 note:** This model uses a custom `BidirectionalMistralModel` that resists standard quantization (bitsandbytes int8/int4) and GGUF conversion. fp16 (~14GB VRAM) is the practical minimum. For lower VRAM requirements, use `lmstudio` or `sentence_transformers` with a smaller model.
 
 Configure in `.env`:
 
@@ -272,7 +280,7 @@ Two tabs:
 
 ```bash
 python -m semantic_kinematics
-# Opens at http://localhost:7861
+# Opens at http://localhost:7860
 ```
 
 ## Project Structure

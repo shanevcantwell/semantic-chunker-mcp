@@ -29,11 +29,13 @@ dependencies = [
     "python-dotenv>=1.0.0",
     "spacy>=3.0.0",
     "mcp>=1.0.0",
-    "gradio>=6.5.1",
-    "plotly",
 ]
 
 [project.optional-dependencies]
+ui = [
+    "gradio>=6.5.1",
+    "plotly",
+]
 gpu = [
     "sentence-transformers>=2.2.0",
     "torch>=2.0.0",
