@@ -42,10 +42,11 @@ def create_app() -> gr.Blocks:
 
 
 def main():
+    import os
     app = create_app()
     app.launch(
         server_name="0.0.0.0",
-        server_port=7861,
+        server_port=int(os.environ.get("GRADIO_SERVER_PORT", 7860)),
         share=False,
         show_error=True,
     )
